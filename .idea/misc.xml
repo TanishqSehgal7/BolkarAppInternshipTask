@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable-v24/ic_host_badge.xml" value="0.29814814814814816" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable-v24/ic_people_12.xml" value="0.29814814814814816" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable/amantrit_karein_button_bg.xml" value="0.3055555555555556" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable/bottom_appbar_bg.xml" value="0.30185185185185187" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable/button_bg.xml" value="0.3055555555555556" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable/circular_image_bg.xml" value="0.3425641025641026" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.30648148148148147" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/drawable/recycler_wiew1_bg.xml" value="0.31203703703703706" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/layout/actionbar_layout.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/layout/recyclerview1_item.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Tanishq Sehgal/AndroidStudioProjects/BolkarAppInternshipTask/app/src/main/res/layout/recyclerview2_item.xml" value="0.3333333333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

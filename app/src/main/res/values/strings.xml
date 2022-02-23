@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BolkarAppInternshipTask</string>
+    <string name="speaker_name">Speaker Name</string>
+    <string name="speaker_or_host">Speaker or Host</string>
+</resources>
