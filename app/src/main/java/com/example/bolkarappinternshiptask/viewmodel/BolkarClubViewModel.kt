@@ -1,10 +1,7 @@
 package com.example.bolkarappinternshiptask.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.bolkarappinternshiptask.modelClass.Host
 import com.example.bolkarappinternshiptask.modelClass.Member
 import com.example.bolkarappinternshiptask.modelClass.Moderator
@@ -13,34 +10,27 @@ import com.example.bolkarappinternshiptask.repository.BolkarClubRepository
 import com.example.bolkarappinternshiptask.retrofit.ApiInterface
 import kotlinx.coroutines.*
 
-class BolkarClubViewModel(application: Application) : AndroidViewModel(application) {
+class BolkarClubViewModel(private val bolkarClubRepository: BolkarClubRepository) : ViewModel() {
 
     private var job: Job
 
-    private val bolkalClubRepository : BolkarClubRepository
-
     init {
-        bolkalClubRepository=BolkarClubRepository()
-
         job=CoroutineScope(Dispatchers.IO).launch (Dispatchers.IO) {
-            bolkalClubRepository.loadHostData()
-            bolkalClubRepository.loadSpeakerData()
-            bolkalClubRepository.loadMemberData()
-            bolkalClubRepository.loadModeratorData()
+            bolkarClubRepository.loadHostData()
         }
     }
 
-    val host: MutableLiveData<List<Host>>
-        get() = bolkalClubRepository.host
+   val host : LiveData<Host>
+       get() = bolkarClubRepository.host
 
-    val speaker: MutableLiveData<List<Speaker>>
-        get() = bolkalClubRepository.speaker
-
-    val moderator: MutableLiveData<List<Moderator>>
-        get() = bolkalClubRepository.moderator
-
-    val member: MutableLiveData<List<Member>>
-        get() = bolkalClubRepository.member
+//    val speaker: MutableLiveData<List<Speaker>>
+//        get() = bolkalClubRepository.speaker
+//
+//    val moderator: MutableLiveData<List<Moderator>>
+//        get() = bolkalClubRepository.moderator
+//
+//    val member: MutableLiveData<List<Member>>
+//        get() = bolkalClubRepository.member
 
 
 //    val host: MutableLiveData<List<Host>>

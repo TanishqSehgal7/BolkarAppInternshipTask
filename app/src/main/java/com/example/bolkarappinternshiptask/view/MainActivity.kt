@@ -5,10 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bolkarappinternshiptask.R
 import com.example.bolkarappinternshiptask.databinding.ActivityMainBinding
+import com.example.bolkarappinternshiptask.repository.BolkarClubRepository
+import com.example.bolkarappinternshiptask.retrofit.ApiInterface
+import com.example.bolkarappinternshiptask.retrofit.RetroFitInstance
 import com.example.bolkarappinternshiptask.viewmodel.BolkarClubViewModel
+import com.example.bolkarappinternshiptask.viewmodel.ViewModelFactory
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
@@ -21,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         recyclerView1=binding.recyclerView1
         recyclerView2=binding.recyclerView2
@@ -37,22 +40,14 @@ class MainActivity : AppCompatActivity() {
             toolbar.setPadding(0,0,0,0)
         }
 
-        // initialize viewmodel using AndroidViewModelFactory
-        val viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application))
-            .get(BolkarClubViewModel::class.java)
+        val apiInterface:ApiInterface = RetroFitInstance.instanceOfRetrofitWithApi
+        val bolkarClubRepository=BolkarClubRepository(apiInterface)
 
-        try {
+        // initialize viewmodel using AndroidViewModelFactory
+        val viewModel = ViewModelProvider(this,ViewModelFactory(bolkarClubRepository)).get(BolkarClubViewModel::class.java)
             viewModel.host.observe(this, {
-                Log.d("Host",it.toString())
+                Log.d("Host","Host data is: "+it.n + " " + it.u)
             })
-        } catch (ex:IOException) {
-            ex.printStackTrace()
-        }
-//        viewModel.host.observe(this, {list->
-//            list.let {
-//                // here we update viewmodel data in recyclerview if there are any changes from backend
-//            }
-//        })
 
     }
 }
