@@ -14,15 +14,14 @@ class BolkarClubViewModel(private val bolkarClubRepository: BolkarClubRepository
     init {
         job=CoroutineScope(Dispatchers.IO).launch (Dispatchers.IO) {
             bolkarClubRepository.loadData()
-            bolkarClubRepository.profilePicurl
         }
     }
 
    val data : LiveData<AllData>
        get() = bolkarClubRepository.data
 
-    val profilePicUrl: LiveData<String>
-        get() = bolkarClubRepository.profilePicurl
+//    val profilePicUrl: LiveData<String>
+//        get() = bolkarClubRepository.profilePicurl
 
 //    val speaker: MutableLiveData<List<Speaker>>
 //        get() = bolkalClubRepository.speaker

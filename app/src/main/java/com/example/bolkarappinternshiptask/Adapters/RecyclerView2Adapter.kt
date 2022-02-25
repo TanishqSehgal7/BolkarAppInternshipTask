@@ -19,7 +19,8 @@ import com.example.bolkarappinternshiptask.viewmodel.BolkarClubViewModel
 import com.example.bolkarappinternshiptask.viewmodel.ViewModelFactory
 import java.lang.reflect.Member
 
-class RecyclerView2Adapter(private val listOfMembers: ArrayList<Person> = ArrayList()) : RecyclerView.Adapter<RecyclerView2Adapter.ViewHolderClass>() {
+class RecyclerView2Adapter(context: Context,private var listOfMembers: ArrayList<Person> = ArrayList()) : RecyclerView.Adapter<RecyclerView2Adapter.ViewHolderClass>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView2Adapter.ViewHolderClass {
         val view =ViewHolderClass(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview2_item,parent,false))
@@ -33,6 +34,11 @@ class RecyclerView2Adapter(private val listOfMembers: ArrayList<Person> = ArrayL
 
     override fun getItemCount(): Int {
         return listOfMembers.size
+    }
+
+    fun setMemberList(personList: ArrayList<Person>) {
+        this.listOfMembers = personList
+        notifyDataSetChanged()
     }
 
     class ViewHolderClass (itemView:View) : RecyclerView.ViewHolder(itemView) {
