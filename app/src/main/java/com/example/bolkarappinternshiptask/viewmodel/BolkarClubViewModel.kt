@@ -2,10 +2,7 @@ package com.example.bolkarappinternshiptask.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.bolkarappinternshiptask.modelClass.Host
-import com.example.bolkarappinternshiptask.modelClass.Member
-import com.example.bolkarappinternshiptask.modelClass.Moderator
-import com.example.bolkarappinternshiptask.modelClass.Speaker
+import com.example.bolkarappinternshiptask.modelClass.*
 import com.example.bolkarappinternshiptask.repository.BolkarClubRepository
 import com.example.bolkarappinternshiptask.retrofit.ApiInterface
 import kotlinx.coroutines.*
@@ -16,12 +13,16 @@ class BolkarClubViewModel(private val bolkarClubRepository: BolkarClubRepository
 
     init {
         job=CoroutineScope(Dispatchers.IO).launch (Dispatchers.IO) {
-            bolkarClubRepository.loadHostData()
+            bolkarClubRepository.loadData()
+            bolkarClubRepository.profilePicurl
         }
     }
 
-   val host : LiveData<Host>
-       get() = bolkarClubRepository.host
+   val data : LiveData<AllData>
+       get() = bolkarClubRepository.data
+
+    val profilePicUrl: LiveData<String>
+        get() = bolkarClubRepository.profilePicurl
 
 //    val speaker: MutableLiveData<List<Speaker>>
 //        get() = bolkalClubRepository.speaker

@@ -2,7 +2,7 @@ package com.example.bolkarappinternshiptask.modelClass
 
 import com.google.gson.annotations.SerializedName
 
-data class Member(
+data class Person (
     @SerializedName("_id")
     val _id: String,
     @SerializedName("au")
