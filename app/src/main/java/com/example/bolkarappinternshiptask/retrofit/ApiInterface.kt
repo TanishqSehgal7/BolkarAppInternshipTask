@@ -16,7 +16,7 @@ interface ApiInterface {
     @GET("/live/room.json")
     suspend fun getData() : Response<AllData>
 
-    @GET("/live/uploads/dp/{{u}}.jpg")
+    @GET("{u}.jpg")
     suspend fun getProfileUrl(@Path("u") userId:String) : Response<String>
 
 

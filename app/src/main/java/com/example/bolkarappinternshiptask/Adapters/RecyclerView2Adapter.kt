@@ -19,7 +19,7 @@ import com.example.bolkarappinternshiptask.viewmodel.BolkarClubViewModel
 import com.example.bolkarappinternshiptask.viewmodel.ViewModelFactory
 import java.lang.reflect.Member
 
-class RecyclerView2Adapter(context: Context,private var listOfMembers: ArrayList<Person> = ArrayList()) : RecyclerView.Adapter<RecyclerView2Adapter.ViewHolderClass>() {
+class RecyclerView2Adapter(private var listOfMembers: ArrayList<Person> = ArrayList()) : RecyclerView.Adapter<RecyclerView2Adapter.ViewHolderClass>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView2Adapter.ViewHolderClass {

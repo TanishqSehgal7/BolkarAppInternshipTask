@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bolkarappinternshiptask.R
 import com.example.bolkarappinternshiptask.modelClass.*
+import com.example.bolkarappinternshiptask.retrofit.RetroFitInstance
+import com.example.bolkarappinternshiptask.view.MainActivity
 
-class RecyclerView1Adapter(
-    context: Context, private var persons: ArrayList<Person> =ArrayList()
-): RecyclerView.Adapter<RecyclerView1Adapter.ViewHolderClass>() {
+class RecyclerView1Adapter(private var persons: ArrayList<Person> =ArrayList(),
+private val imageUrlList:ArrayList<String> = ArrayList(),
+val activity:MainActivity): RecyclerView.Adapter<RecyclerView1Adapter.ViewHolderClass>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val view = ViewHolderClass(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview1_item,parent,false))
@@ -23,6 +26,8 @@ class RecyclerView1Adapter(
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val currentPerson = persons[position]
         holder.name.text= currentPerson.n.split(" ")[0]
+
+        Glide.with(activity).load(imageUrlList[position]).into(holder.dp)
 
         if (currentPerson.mod || currentPerson.n=="Prince Tripathi") {
             holder.label.text="Host"

@@ -27,13 +27,11 @@ class BolkarClubRepository(val apiInterface: ApiInterface) {
         }
     }
 
-//    suspend fun loadProfileUrls(userId: String) : Response<String> {
-//        val profilePicUrlResult = apiInterface.getProfileUrl(userId)
-//        if (profilePicUrlResult.body()!=null) {
-//            profilePicUrlLiveData.postValue(profilePicUrlResult.body())
-//            Log.d("ErrorResult2", profilePicUrlResult.toString() + "\n\n" + profilePicUrlResult.body())
-//            return profilePicUrlResult
-//        }
-//        return profilePicUrlResult
-//    }
+    suspend fun loadProfileUrls(userId: String) {
+        val profilePicUrlResult = apiInterface.getProfileUrl(userId)
+        if (profilePicUrlResult.body()!=null) {
+            profilePicUrlLiveData.postValue(profilePicUrlResult.body())
+            Log.d("ErrorResult2", profilePicUrlResult.toString() + "\n\n" + profilePicUrlResult.body())
+        }
+    }
 }

@@ -14,11 +14,15 @@ class BolkarClubViewModel(private val bolkarClubRepository: BolkarClubRepository
     init {
         job=CoroutineScope(Dispatchers.IO).launch (Dispatchers.IO) {
             bolkarClubRepository.loadData()
+            suspend  fun loadProfileUrl(userId:String) = bolkarClubRepository.loadProfileUrls(userId)
         }
     }
 
    val data : LiveData<AllData>
        get() = bolkarClubRepository.data
+
+    val profilePicUrls : LiveData<String>
+        get() = bolkarClubRepository.profilePicurl
 
 //    val profilePicUrl: LiveData<String>
 //        get() = bolkarClubRepository.profilePicurl
