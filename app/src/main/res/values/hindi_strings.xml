@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="GoOutBtnText">बाहर जाएँ</string>
-    <string name="InviteBtn">आमंत्रित करें</string>
+    <string name="GoOutBtnText">✌ बाहर जाएँ</string>
+    <string name="InviteBtn">+ आमंत्रित करें</string>
     <string name="textForTextView">अन्य यूज़र जो जुड चुके हैं |</string>
+    <string name="SpeakerString">स्पीकर</string>
+    <string name="HostString">होस्ट</string>
 </resources>

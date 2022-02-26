@@ -21,7 +21,6 @@ import com.example.bolkarappinternshiptask.retrofit.RetroFitInstance
 import com.example.bolkarappinternshiptask.viewmodel.BolkarClubViewModel
 import com.example.bolkarappinternshiptask.viewmodel.ViewModelFactory
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
@@ -43,16 +42,13 @@ class MainActivity : AppCompatActivity() {
         recyclerView1=binding.recyclerView1
         recyclerView2=binding.recyclerView2
 
-//        val adapterForRv1 = RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this
-        val adapterForRv1 = RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this)
-
-        val adapterForRv2 = RecyclerView2Adapter()
-
         val apiInterface:ApiInterface = RetroFitInstance.instanceOfRetrofitWithApi
         val bolkarClubRepository=BolkarClubRepository(apiInterface)
 
+        // specify layouts for recyclerviews
         recyclerView1.layoutManager=GridLayoutManager(this,3)
         recyclerView2.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+
         // initialize viewmodel using AndroidViewModelFactory
         val viewModel = ViewModelProvider(this,ViewModelFactory(bolkarClubRepository)).get(BolkarClubViewModel::class.java)
             viewModel.data.observe(this, {
@@ -61,30 +57,32 @@ class MainActivity : AppCompatActivity() {
                 listOfAllData.add(it)
                 listOfPersonsForRv1.add(it.data.host)
 
+                it.data.speakers.reversed()
                 // combining host speaker and moderator data for rv1
-                for (speaker in it.data.speakers) {
-                    listOfPersonsForRv1.add(speaker)
+                for (i in 1 until it.data.speakers.size) {
+                    // reversing list of speakers and then adding to listOfPersonsForRv1
+                    val list: MutableList<Person> = it.data.speakers.reversed() as MutableList<Person>
+                    listOfPersonsForRv1.add(list[i])
                 }
-                for (moderator in it.data.moderators) {
-                    listOfPersonsForRv1.add(moderator)
-                }
+//                for (moderator in it.data.moderators) {
+//                    listOfPersonsForRv1.add(moderator)
+//                }
                 for (member in it.data.members) {
                     listOfMembers.add(member)
                 }
 
                 for (i in listOfPersonsForRv1) {
-                    val imageurl = RetroFitInstance.baseUrlForProfilePic+i.u+"jpg"
+                    val imageurl = RetroFitInstance.baseUrlForProfilePic+i.u+".jpg"
                     lisOfProfileUrlsForRv1.add(imageurl)
                 }
 
                 for (i in listOfMembers) {
-                    val imageurl = RetroFitInstance.baseUrlForProfilePic+i.u+"jpg"
-                    lisOfProfileUrlsForRv1.add(imageurl)
+                    val imageurl = RetroFitInstance.baseUrlForProfilePic+i.u+".jpg"
+                    listOfProfileUrlsForMembers.add(imageurl)
                 }
 
                 Log.d("Members", listOfMembers.toString())
-//                adapterForRv1.setPersonList(listOfPersonsForRv1)
-                adapterForRv2.setMemberList(listOfMembers)
+
                 // setting properties to action bar
                 supportActionBar?.apply {
 
@@ -92,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                     setDisplayShowCustomEnabled(true)
                     setCustomView(R.layout.actionbar_layout)
                     customView.findViewById<TextView>(R.id.appBarHeading).text = it.data.topic
+                    customView.findViewById<TextView>(R.id.numberOfPeople).text = listOfPersonsForRv1.size.toString()
 
                     Glide.with(this@MainActivity).load(RetroFitInstance.baseUrlForProfilePic + it.data.host.u+".jpg").into(customView.findViewById(R.id.profileimg))
 
@@ -99,9 +98,11 @@ class MainActivity : AppCompatActivity() {
                     toolbar.setContentInsetsAbsolute(0,0)
                     toolbar.setPadding(0,0,0,0)
                 }
-            })
-        recyclerView1.adapter=RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this)
-        recyclerView2.adapter=RecyclerView2Adapter(listOfMembers)
 
+                // binidng recyclerview adapteters to activity and passsing all data as lists to adapters
+                recyclerView1.adapter=RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this)
+                recyclerView2.adapter=RecyclerView2Adapter(listOfMembers,listOfProfileUrlsForMembers,this)
+                Log.d("ProfileUrlList", listOfProfileUrlsForMembers.toString() +"\n\n" + lisOfProfileUrlsForRv1)
+            })
     }
 }

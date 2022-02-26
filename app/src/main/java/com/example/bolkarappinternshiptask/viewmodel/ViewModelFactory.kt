@@ -1,6 +1,5 @@
 package com.example.bolkarappinternshiptask.viewmodel
 
-import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.bolkarappinternshiptask.repository.BolkarClubRepository

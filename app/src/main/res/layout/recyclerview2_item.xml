@@ -3,8 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
-    android:layout_margin="10dp">
+    android:layout_marginStart="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,7 +15,7 @@
         android:orientation="vertical">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/OtherUsersDp"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -24,6 +23,7 @@
             android:background="@drawable/circular_image_bg"/>
 
         <TextView
+            android:layout_gravity="center"
             android:id="@+id/OtherUsersNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

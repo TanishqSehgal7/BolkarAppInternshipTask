@@ -55,7 +55,6 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
                     android:src="@drawable/img"
                     app:layout_constraintStart_toEndOf="@id/appBarHeading"
                     app:layout_constraintTop_toTopOf="parent"
@@ -67,25 +66,23 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
                     android:src="@drawable/ic_people_12"
-                    app:layout_constraintStart_toEndOf="@id/globe"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="40dp"/>
+                    app:layout_constraintEnd_toStartOf="@+id/numberOfPeople"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="5dp"/>
 
                 <TextView
                     android:id="@+id/numberOfPeople"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
                     android:textSize="16sp"
                     android:textColor="@android:color/darker_gray"
                     android:textStyle="bold"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:gravity="center_vertical"
-                    app:layout_constraintStart_toEndOf="@+id/peopleimg"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/profileimg"
@@ -100,11 +97,9 @@
                     android:src="@drawable/ic_people_12"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/circular_image_bg"
-                    app:layout_constraintStart_toEndOf="@id/numberOfPeople"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="10dp"/>
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,8 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
-    android:padding="20dp">
+    android:layout_marginStart="10dp"
+    android:layout_centerHorizontal="true">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/personDp"
@@ -19,16 +19,14 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mic"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@drawable/circular_image_bg"
         android:src="@drawable/ic_mic_off"
         app:layout_constraintBottom_toBottomOf="@+id/personDp"
         app:layout_constraintEnd_toEndOf="@id/personDp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/personDp"
         app:layout_constraintTop_toTopOf="@id/personDp"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearlayout"
@@ -47,7 +45,8 @@
             android:layout_height="20dp"
             android:src="@drawable/ic_host_badge"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"/>
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="top"/>
 
         <TextView
             android:id="@+id/personName"
@@ -55,7 +54,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="@string/speaker_name"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_gravity="top"/>
 
     </LinearLayout>
 
