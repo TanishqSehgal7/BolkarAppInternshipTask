@@ -43,12 +43,16 @@ class MainActivity : AppCompatActivity() {
         recyclerView1=binding.recyclerView1
         recyclerView2=binding.recyclerView2
 
+//        val adapterForRv1 = RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this
         val adapterForRv1 = RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this)
+
         val adapterForRv2 = RecyclerView2Adapter()
 
         val apiInterface:ApiInterface = RetroFitInstance.instanceOfRetrofitWithApi
         val bolkarClubRepository=BolkarClubRepository(apiInterface)
 
+        recyclerView1.layoutManager=GridLayoutManager(this,3)
+        recyclerView2.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         // initialize viewmodel using AndroidViewModelFactory
         val viewModel = ViewModelProvider(this,ViewModelFactory(bolkarClubRepository)).get(BolkarClubViewModel::class.java)
             viewModel.data.observe(this, {
@@ -79,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 Log.d("Members", listOfMembers.toString())
-                adapterForRv1.setPersonList(listOfPersonsForRv1)
+//                adapterForRv1.setPersonList(listOfPersonsForRv1)
                 adapterForRv2.setMemberList(listOfMembers)
                 // setting properties to action bar
                 supportActionBar?.apply {
@@ -96,9 +100,7 @@ class MainActivity : AppCompatActivity() {
                     toolbar.setPadding(0,0,0,0)
                 }
             })
-        recyclerView1.layoutManager=GridLayoutManager(this,3)
         recyclerView1.adapter=RecyclerView1Adapter(listOfPersonsForRv1,lisOfProfileUrlsForRv1,this)
-        recyclerView2.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         recyclerView2.adapter=RecyclerView2Adapter(listOfMembers)
 
     }

@@ -7,16 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bolkarappinternshiptask.R
 import com.example.bolkarappinternshiptask.modelClass.*
+import com.example.bolkarappinternshiptask.repository.BolkarClubRepository
+import com.example.bolkarappinternshiptask.retrofit.ApiInterface
 import com.example.bolkarappinternshiptask.retrofit.RetroFitInstance
 import com.example.bolkarappinternshiptask.view.MainActivity
+import com.example.bolkarappinternshiptask.viewmodel.BolkarClubViewModel
+import com.example.bolkarappinternshiptask.viewmodel.ViewModelFactory
 
-class RecyclerView1Adapter(private var persons: ArrayList<Person> =ArrayList(),
-private val imageUrlList:ArrayList<String> = ArrayList(),
-val activity:MainActivity): RecyclerView.Adapter<RecyclerView1Adapter.ViewHolderClass>() {
+class RecyclerView1Adapter(
+    private var persons: ArrayList<Person> =ArrayList(),
+    private val imageUrlList:ArrayList<String> = ArrayList(),
+    val activity:MainActivity
+): RecyclerView.Adapter<RecyclerView1Adapter.ViewHolderClass>() {
+
+    val apiInterface: ApiInterface = RetroFitInstance.instanceOfRetrofitWithApi
+    val bolkarClubRepository= BolkarClubRepository(apiInterface)
+//    private val imageUrlList:ArrayList<String> = ArrayList()
+//    private var persons: ArrayList<Person> =ArrayList()
+
+    val personList = this.persons
+    val urlList = this.imageUrlList
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val view = ViewHolderClass(LayoutInflater.from(parent.context).inflate(R.layout.recyclerview1_item,parent,false))
@@ -24,7 +40,23 @@ val activity:MainActivity): RecyclerView.Adapter<RecyclerView1Adapter.ViewHolder
     }
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-        val currentPerson = persons[position]
+
+
+//        val viewModel = ViewModelProvider(activity, ViewModelFactory(bolkarClubRepository)).get(
+//            BolkarClubViewModel::class.java)
+//
+//        viewModel.data.observe(activity,{
+//            persons.add(it.data.host)
+//            for (speaker in it.data.speakers) {
+//                persons.add(speaker)
+//            }
+//            for (moderator in it.data.moderators){
+//                persons.add(moderator)
+//            }
+//        })
+
+        val currentPerson = personList[position]
+        Log.d("Adapter 1", currentPerson.toString())
         holder.name.text= currentPerson.n.split(" ")[0]
 
         Glide.with(activity).load(imageUrlList[position]).into(holder.dp)
@@ -44,13 +76,13 @@ val activity:MainActivity): RecyclerView.Adapter<RecyclerView1Adapter.ViewHolder
     }
 
     override fun getItemCount(): Int {
-        return persons.size;
+        return personList.size;
     }
 
-    fun setPersonList(personList: ArrayList<Person>) {
-        this.persons = personList
-        notifyDataSetChanged()
-    }
+//    fun setPersonList(personList: ArrayList<Person>) {
+//        this.persons = personList
+//        notifyDataSetChanged()
+//    }
 
     class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.findViewById<TextView>(R.id.personName)
