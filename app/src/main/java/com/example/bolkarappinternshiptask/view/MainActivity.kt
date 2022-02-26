@@ -2,9 +2,12 @@ package com.example.bolkarappinternshiptask.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +23,7 @@ import com.example.bolkarappinternshiptask.retrofit.ApiInterface
 import com.example.bolkarappinternshiptask.retrofit.RetroFitInstance
 import com.example.bolkarappinternshiptask.viewmodel.BolkarClubViewModel
 import com.example.bolkarappinternshiptask.viewmodel.ViewModelFactory
+import kotlinx.coroutines.delay
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,9 +40,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        installSplashScreen()
+        Toast.makeText(this,"Please make sure you are connected to the internet!",Toast.LENGTH_SHORT).show()
+
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         recyclerView1=binding.recyclerView1
         recyclerView2=binding.recyclerView2
 
